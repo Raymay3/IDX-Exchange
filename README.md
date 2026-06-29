@@ -1,4 +1,4 @@
-# IDX California Home Price Prediction
+# IDX Exchange - California Home Price Prediction
 
 Machine learning project completed as part of my **Data Science Internship at IDX Exchange**.
 
