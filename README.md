@@ -1,10 +1,14 @@
 # IDX Exchange - California Home Price Prediction
 
+**Status:** 🚧 In Progress (Week 3 of 12)
+
 Machine learning project completed as part of my **Data Science Internship at IDX Exchange**.
 
 ## Overview
 
 The objective of this project is to develop a machine learning model capable of predicting the final sale price of residential properties in California using historical Multiple Listing Service (MLS) transaction data.
+
+The exploratory analysis currently includes approximately **794,000 California property transactions**, with **399,000 residential single-family homes** retained after applying the project filtering criteria.
 
 Throughout the internship, the project will progress from exploratory data analysis and preprocessing through feature engineering, model development, evaluation, and final presentation.
 
@@ -47,15 +51,29 @@ This repository is updated throughout the internship to document my individual c
 
 ```text
 .
-├── notebooks/
-├── src/
-├── reports/
-├── models/
-├── images/
 ├── data/
-├── requirements.txt
-└── README.md
+│   └── README.md                 # Dataset information (raw MLS files excluded)
+├── notebooks/
+│   └── 01_exploration.ipynb      # Exploratory Data Analysis
+├── reports/
+│   └── metadata_notes.md         # Dataset field descriptions
+├── .gitignore
+├── LICENSE
+├── README.md
+└── requirements.txt
 ```
+
+---
+
+## Project Notebooks
+
+| Notebook | Description | Status |
+|----------|-------------|--------|
+| 01_exploration.ipynb | Exploratory data analysis of California residential property sales | ✅ Complete |
+| 02_preprocessing.ipynb | Data cleaning and preprocessing | ⏳ Planned |
+| 03_baseline_model.ipynb | Linear regression baseline model | ⏳ Planned |
+| 04_tree_models.ipynb | Decision Tree and Random Forest models | ⏳ Planned |
+| 05_feature_engineering.ipynb | Feature creation and selection | ⏳ Planned |
 
 ---
 
@@ -82,6 +100,27 @@ Additional libraries may be added as the project progresses.
 * Reviewed project documentation
 * Reviewed property metadata
 * Documented important dataset fields
+
+### Week 2
+
+* Combined 30 monthly CRMLS Sold datasets into a single DataFrame
+* Filtered data to Residential SingleFamilyResidence properties
+* Performed exploratory data analysis (EDA)
+* Evaluated missing values and summary statistics
+* Visualized distributions of key housing variables
+* Identified extreme observations and distribution skewness
+* Documented findings for future preprocessing
+
+## Exploratory Data Analysis Highlights
+
+Week 2 exploratory analysis found that:
+
+- The combined dataset contains approximately **794,000** property transactions.
+- After filtering, **399,157** residential single-family properties remain.
+- Missing values are minimal across the primary modeling variables.
+- Close Price, Living Area, and Lot Size exhibit strongly right-skewed distributions.
+- Most homes contain **3–4 bedrooms** and **2–3 bathrooms**.
+- Extreme observations were identified and will be investigated during preprocessing.
 
 ---
 
@@ -110,10 +149,10 @@ Following project guidance, the following variables will **not** be used as mode
 
 Future updates will include:
 
-* Exploratory data analysis
-* Data cleaning pipeline
+* Data preprocessing
 * Feature engineering
-* Regression model comparison
+* Baseline regression models
+* Ensemble learning models
 * Model evaluation
 * Feature importance analysis
 * Prediction workflow
