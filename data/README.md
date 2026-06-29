@@ -7,7 +7,7 @@ This directory is reserved for the monthly CSV files used during development.
 
 Example structure:
 
-```
+```text
 data/
 └── California/
     ├── CRMLSSold202401_filled.csv
