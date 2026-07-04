@@ -1,6 +1,6 @@
 # IDX Exchange - California Home Price Prediction
 
-**Status:** 🚧 In Progress (Week 3 of 12)
+**Status:** 🚧 In Progress (Week 4 of 12)
 
 Machine learning project completed as part of my **Data Science Internship at IDX Exchange**.
 
@@ -55,6 +55,7 @@ This repository is updated throughout the internship to document my individual c
 │   └── README.md                 # Dataset information (raw MLS files excluded)
 ├── notebooks/
 │   └── 01_exploration.ipynb      # Exploratory Data Analysis
+│   └── 02_preprocessing.ipynb
 ├── reports/
 │   └── metadata_notes.md         # Dataset field descriptions
 ├── .gitignore
@@ -70,7 +71,7 @@ This repository is updated throughout the internship to document my individual c
 | Notebook | Description | Status |
 |----------|-------------|--------|
 | 01_exploration.ipynb | Exploratory data analysis of California residential property sales | ✅ Complete |
-| 02_preprocessing.ipynb | Data cleaning and preprocessing | ⏳ Planned |
+| 02_preprocessing.ipynb | Data cleaning and preprocessing | ✅ Complete |
 | 03_baseline_model.ipynb | Linear regression baseline model | ⏳ Planned |
 | 04_tree_models.ipynb | Decision Tree and Random Forest models | ⏳ Planned |
 | 05_feature_engineering.ipynb | Feature creation and selection | ⏳ Planned |
@@ -122,6 +123,29 @@ Week 2 exploratory analysis found that:
 - Most homes contain **3–4 bedrooms** and **2–3 bathrooms**.
 - Extreme observations were identified and will be investigated during preprocessing.
 
+### Week 3
+
+* Removed columns containing 100% missing values.
+* Removed variables with more than 50% missing data.
+* Imputed remaining missing values using median and mode strategies.
+* Removed identifier variables and data leakage features.
+* One-hot encoded selected categorical variables.
+* Standardized continuous numerical features.
+* Created a chronological train/test split using the most recent month as the testing set.
+* Exported cleaned training and testing datasets for model development.
+
+## Preprocessing Highlights
+
+Week 3 preprocessing included:
+
+- Removed columns with 100% missing values.
+- Removed variables containing more than 50% missing observations.
+- Imputed remaining missing values using median (numerical) and mode (categorical) strategies.
+- Removed identifier variables and project-designated data leakage features (`ListPrice` and `OriginalListPrice`).
+- One-hot encoded selected low-cardinality categorical variables.
+- Standardized continuous numerical predictor variables.
+- Created a chronological training/testing split using the most recent month as the testing dataset.
+
 ---
 
 ## Dataset
@@ -149,11 +173,11 @@ Following project guidance, the following variables will **not** be used as mode
 
 Future updates will include:
 
-* Data preprocessing
+* Baseline linear regression model
+* Decision Tree and Random Forest models
 * Feature engineering
-* Baseline regression models
-* Ensemble learning models
-* Model evaluation
+* Gradient boosting models
+* Model evaluation and comparison
 * Feature importance analysis
 * Prediction workflow
 * Final project presentation
