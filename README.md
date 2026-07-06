@@ -131,7 +131,7 @@ Week 2 exploratory analysis found that:
 * Removed identifier variables and data leakage features.
 * One-hot encoded selected categorical variables.
 * Standardized continuous numerical features.
-* Created a chronological train/test split using the most recent month as the testing set.
+* Created a chronological train/test split using the most recent month as the testing set and a configurable training window preceding the test month (initially set to 5 months).
 * Exported cleaned training and testing datasets for model development.
 
 ## Preprocessing Highlights
@@ -144,7 +144,7 @@ Week 3 preprocessing included:
 - Removed identifier variables and project-designated data leakage features (`ListPrice` and `OriginalListPrice`).
 - One-hot encoded selected low-cardinality categorical variables.
 - Standardized continuous numerical predictor variables.
-- Created a chronological training/testing split using the most recent month as the testing dataset.
+- Created a chronological training/testing split using the most recent month as the testing dataset and a configurable training window (initially five months) immediately preceding it.
 
 ---
 
