@@ -175,8 +175,8 @@ The baseline Linear Regression model establishes an initial benchmark for future
 Performance on the testing dataset:
 
 - R²: 0.2150
-- MAE: $...
-- RMSE: $...
+- MAE: $637,890
+- RMSE: $1,486,789
 - MAPE: 69.41%
 - MdAPE: 35.92%
 
