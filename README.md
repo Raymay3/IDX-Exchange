@@ -1,6 +1,6 @@
 # IDX Exchange - California Home Price Prediction
 
-**Status:** 🚧 In Progress (Week 4 of 12)
+**Status:** 🚧 In Progress (Week 5 of 12)
 
 Machine learning project completed as part of my **Data Science Internship at IDX Exchange**.
 
@@ -25,6 +25,17 @@ This repository is updated throughout the internship to document my individual c
 * Evaluate model performance using appropriate regression metrics
 * Produce accurate property price predictions
 * Document the complete machine learning workflow
+
+---
+
+## Model Progress
+
+| Model | Status | R² |
+|-------|--------|----:|
+| Linear Regression | ✅ Complete | 0.2150 |
+| Decision Tree | ⏳ Planned | — |
+| Random Forest | ⏳ Planned | — |
+| Gradient Boosting | ⏳ Planned | — |
 
 ---
 
@@ -54,8 +65,9 @@ This repository is updated throughout the internship to document my individual c
 ├── data/
 │   └── README.md                 # Dataset information (raw MLS files excluded)
 ├── notebooks/
-│   └── 01_exploration.ipynb      # Exploratory Data Analysis
-│   └── 02_preprocessing.ipynb
+│   ├── 01_exploration.ipynb      # Exploratory Data Analysis
+│   ├── 02_preprocessing.ipynb
+│   ├── 03_baseline_model.ipynb
 ├── reports/
 │   └── metadata_notes.md         # Dataset field descriptions
 ├── .gitignore
@@ -72,7 +84,7 @@ This repository is updated throughout the internship to document my individual c
 |----------|-------------|--------|
 | 01_exploration.ipynb | Exploratory data analysis of California residential property sales | ✅ Complete |
 | 02_preprocessing.ipynb | Data cleaning and preprocessing | ✅ Complete |
-| 03_baseline_model.ipynb | Linear regression baseline model | ⏳ Planned |
+| 03_baseline_model.ipynb | Linear regression baseline model | ✅ Complete |
 | 04_tree_models.ipynb | Decision Tree and Random Forest models | ⏳ Planned |
 | 05_feature_engineering.ipynb | Feature creation and selection | ⏳ Planned |
 
@@ -83,7 +95,8 @@ This repository is updated throughout the internship to document my individual c
 * Python
 * pandas
 * NumPy
-* scikit-learn
+* scikit-learn (Linear Regression, Decision Trees, Random Forest)
+* XGBoost (planned)
 * matplotlib
 * Jupyter Notebook
 
@@ -146,6 +159,31 @@ Week 3 preprocessing included:
 - Standardized continuous numerical predictor variables.
 - Created a chronological training/testing split using the most recent month as the testing dataset and a configurable training window (initially five months) immediately preceding it.
 
+### Week 4
+
+* Loaded the cleaned training and testing datasets produced during preprocessing.
+* Trained a baseline Linear Regression model.
+* Generated predictions on the testing dataset.
+* Evaluated model performance using MAE, RMSE, R², MAPE, and MdAPE.
+* Visualized actual versus predicted home sale prices.
+* Established baseline performance for comparison with future machine learning models.
+
+## Baseline Model Results
+
+The baseline Linear Regression model establishes an initial benchmark for future model comparisons.
+
+Performance on the testing dataset:
+
+- R²: 0.2150
+- MAE: $...
+- RMSE: $...
+- MAPE: 69.41%
+- MdAPE: 35.92%
+
+Although the model captures some of the variation in California home prices, its relatively low R² and high percentage-based error metrics indicate that more flexible machine learning algorithms will likely provide better predictive performance.
+
+These results serve as the baseline against which all future models in this project will be evaluated.
+
 ---
 
 ## Dataset
@@ -173,14 +211,13 @@ Following project guidance, the following variables will **not** be used as mode
 
 Future updates will include:
 
-* Baseline linear regression model
 * Decision Tree and Random Forest models
 * Feature engineering
 * Gradient boosting models
-* Model evaluation and comparison
+* Expanded model evaluation
 * Feature importance analysis
-* Prediction workflow
-* Final project presentation
+* Streamlit prediction application (optional)
+* Final project documentation and presentation
 
 ---
 
