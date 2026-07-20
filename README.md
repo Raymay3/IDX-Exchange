@@ -1,6 +1,6 @@
 # IDX Exchange - California Home Price Prediction
 
-**Status:** 🚧 In Progress (Week 5 of 12)
+**Status:** 🚧 In Progress (Week 6 of 12)
 
 Machine learning project completed as part of my **Data Science Internship at IDX Exchange**.
 
@@ -30,12 +30,12 @@ This repository is updated throughout the internship to document my individual c
 
 ## Model Progress
 
-| Model | Status | R² |
-|-------|--------|----:|
-| Linear Regression | ✅ Complete | 0.2150 |
-| Decision Tree | ⏳ Planned | — |
-| Random Forest | ⏳ Planned | — |
-| Gradient Boosting | ⏳ Planned | — |
+| Model             | Status     |          R² |
+| ----------------- | ---------- | ----------: |
+| Linear Regression | ✅ Complete |  **0.2484** |
+| Decision Tree     | ✅ Complete |  **0.3465** |
+| Random Forest     | ✅ Complete | **-0.2974** |
+| Gradient Boosting | ⏳ Planned  |           — |
 
 ---
 
@@ -68,6 +68,7 @@ This repository is updated throughout the internship to document my individual c
 │   ├── 01_exploration.ipynb      # Exploratory Data Analysis
 │   ├── 02_preprocessing.ipynb
 │   ├── 03_baseline_model.ipynb
+│   ├── 04_model_comparison.ipynb
 ├── reports/
 │   └── metadata_notes.md         # Dataset field descriptions
 ├── .gitignore
@@ -85,8 +86,8 @@ This repository is updated throughout the internship to document my individual c
 | 01_exploration.ipynb | Exploratory data analysis of California residential property sales | ✅ Complete |
 | 02_preprocessing.ipynb | Data cleaning and preprocessing | ✅ Complete |
 | 03_baseline_model.ipynb | Linear regression baseline model | ✅ Complete |
-| 04_tree_models.ipynb | Decision Tree and Random Forest models | ⏳ Planned |
-| 05_feature_engineering.ipynb | Feature creation and selection | ⏳ Planned |
+| 04_model_comparison.ipynb | Decision Tree and Random Forest models | ✅ Complete |
+| 05_advanced_models.ipynb | Try Gradient Boosting | ⏳ Planned |
 
 ---
 
@@ -95,7 +96,10 @@ This repository is updated throughout the internship to document my individual c
 * Python
 * pandas
 * NumPy
-* scikit-learn (Linear Regression, Decision Trees, Random Forest)
+* scikit-learn
+  - Linear Regression
+  - Decision Tree Regressor
+  - Random Forest Regressor
 * XGBoost (planned)
 * matplotlib
 * Jupyter Notebook
@@ -174,15 +178,35 @@ The baseline Linear Regression model establishes an initial benchmark for future
 
 Performance on the testing dataset:
 
-- R²: 0.2150
-- MAE: $637,890
-- RMSE: $1,486,789
-- MAPE: 69.41%
-- MdAPE: 35.92%
+- R²: 0.2484
+- MAE: $599,679
+- RMSE: $1,454,754
+- MAPE: 65.03%
+- MdAPE: 33.41%
 
 Although the model captures some of the variation in California home prices, its relatively low R² and high percentage-based error metrics indicate that more flexible machine learning algorithms will likely provide better predictive performance.
 
 These results serve as the baseline against which all future models in this project will be evaluated.
+
+### Week 5
+
+* Trained a Decision Tree Regression model.
+* Trained a Random Forest Regression model.
+* Evaluated all models using MAE, RMSE, R², MAPE, and MdAPE.
+* Compared model performance against the Linear Regression baseline.
+* Visualized Actual vs. Predicted home sale prices for each model.
+* Examined Random Forest feature importance.
+* Documented model strengths and limitations.
+
+## Model Comparison Highlights
+
+Week 5 model comparison found that:
+
+- The Decision Tree model substantially improved prediction accuracy over the Linear Regression baseline.
+- The Random Forest model achieved the lowest MAE but produced several extreme prediction errors, resulting in a higher RMSE and negative R².
+- Prediction scatter plots provided a visual comparison of model accuracy.
+- Feature importance analysis identified the variables that contributed most to the Random Forest model's predictions.
+- The Decision Tree provided the most balanced overall performance among the models evaluated.
 
 ---
 
@@ -211,11 +235,9 @@ Following project guidance, the following variables will **not** be used as mode
 
 Future updates will include:
 
-* Decision Tree and Random Forest models
 * Feature engineering
 * Gradient boosting models
 * Expanded model evaluation
-* Feature importance analysis
 * Streamlit prediction application (optional)
 * Final project documentation and presentation
 
