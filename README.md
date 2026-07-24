@@ -30,12 +30,12 @@ This repository is updated throughout the internship to document my individual c
 
 ## Model Progress
 
-| Model             | Status     |          R² |
-| ----------------- | ---------- | ----------: |
-| Linear Regression | ✅ Complete |  **0.2484** |
-| Decision Tree     | ✅ Complete |  **0.3465** |
-| Random Forest     | ✅ Complete | **-0.2974** |
-| Gradient Boosting | ⏳ Planned  |           — |
+| Model             | Status      |     R² |
+| ----------------- | ----------- | ------: |
+| Linear Regression | ✅ Complete | **0.3470** |
+| Decision Tree     | ✅ Complete | **0.4221** |
+| Random Forest     | ✅ Complete | **0.4462** |
+| Gradient Boosting | ⏳ Planned  | — |
 
 ---
 
@@ -149,6 +149,7 @@ Week 2 exploratory analysis found that:
 * One-hot encoded selected categorical variables.
 * Standardized continuous numerical features.
 * Created a chronological train/test split using the most recent month as the testing set and a configurable training window preceding the test month (initially set to 5 months).
+* Removed the top 0.5% of training sale prices after the chronological split to reduce the influence of extreme outliers while preserving an unbiased testing dataset.
 * Exported cleaned training and testing datasets for model development.
 
 ## Preprocessing Highlights
@@ -162,6 +163,7 @@ Week 3 preprocessing included:
 - One-hot encoded selected low-cardinality categorical variables.
 - Standardized continuous numerical predictor variables.
 - Created a chronological training/testing split using the most recent month as the testing dataset and a configurable training window (initially five months) immediately preceding it.
+- Removed the top 0.5% of training sale prices after the chronological split to reduce the impact of extreme outliers without modifying the testing dataset.
 
 ### Week 4
 
@@ -178,13 +180,13 @@ The baseline Linear Regression model establishes an initial benchmark for future
 
 Performance on the testing dataset:
 
-- R²: 0.2484
-- MAE: $599,679
-- RMSE: $1,454,754
-- MAPE: 65.03%
-- MdAPE: 33.41%
+- R²: 0.3470
+- MAE: $433,447
+- RMSE: $1,356,053
+- MAPE: 38.07%
+- MdAPE: 26.51%
 
-Although the model captures some of the variation in California home prices, its relatively low R² and high percentage-based error metrics indicate that more flexible machine learning algorithms will likely provide better predictive performance.
+Although the baseline model captures a greater proportion of the variation in California home prices than earlier preprocessing iterations, there is still substantial room for improvement. More flexible machine learning algorithms are expected to better capture the nonlinear relationships present in residential real estate data.
 
 These results serve as the baseline against which all future models in this project will be evaluated.
 
@@ -197,16 +199,17 @@ These results serve as the baseline against which all future models in this proj
 * Visualized Actual vs. Predicted home sale prices for each model.
 * Examined Random Forest feature importance.
 * Documented model strengths and limitations.
+* Compared model performance after preprocessing improvements and training outlier filtering.
 
 ## Model Comparison Highlights
 
 Week 5 model comparison found that:
 
 - The Decision Tree model substantially improved prediction accuracy over the Linear Regression baseline.
-- The Random Forest model achieved the lowest MAE but produced several extreme prediction errors, resulting in a higher RMSE and negative R².
-- Prediction scatter plots provided a visual comparison of model accuracy.
-- Feature importance analysis identified the variables that contributed most to the Random Forest model's predictions.
-- The Decision Tree provided the most balanced overall performance among the models evaluated.
+- The Random Forest model achieved the strongest overall performance across all evaluation metrics.
+- Prediction scatter plots showed the Random Forest produced predictions that most closely followed the ideal one-to-one relationship.
+- Feature importance analysis identified bathrooms, geographic location, living area, and year built as the most influential predictors of California home sale prices.
+- Random Forest achieved the highest R² (0.4462) while also producing the lowest MAE, RMSE, MAPE, and MdAPE among the models evaluated.
 
 ---
 
@@ -235,8 +238,9 @@ Following project guidance, the following variables will **not** be used as mode
 
 Future updates will include:
 
-* Feature engineering
-* Gradient boosting models
+* Additional feature engineering
+* Gradient Boosting regression models
+* Hyperparameter tuning and model optimization
 * Expanded model evaluation
 * Streamlit prediction application (optional)
 * Final project documentation and presentation
