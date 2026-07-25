@@ -1,6 +1,6 @@
 # IDX Exchange - California Home Price Prediction
 
-**Status:** 🚧 In Progress (Week 6 of 12)
+**Status:** 🚧 In Progress (Week 7 of 12)
 
 Machine learning project completed as part of my **Data Science Internship at IDX Exchange**.
 
@@ -10,7 +10,7 @@ The objective of this project is to develop a machine learning model capable of 
 
 The exploratory analysis currently includes approximately **794,000 California property transactions**, with **399,000 residential single-family homes** retained after applying the project filtering criteria.
 
-Throughout the internship, the project will progress from exploratory data analysis and preprocessing through feature engineering, model development, evaluation, and final presentation.
+Throughout the internship, the project progresses from exploratory data analysis and preprocessing through feature engineering, model development, evaluation, and final presentation. The project includes engineered property features, school district information, and multiple machine learning models for predicting California home sale prices.
 
 This repository is updated throughout the internship to document my individual contributions and project progress.
 
@@ -25,17 +25,19 @@ This repository is updated throughout the internship to document my individual c
 * Evaluate model performance using appropriate regression metrics
 * Produce accurate property price predictions
 * Document the complete machine learning workflow
+* Engineer meaningful predictive features
+* Incorporate geographic information through school district mapping
 
 ---
 
 ## Model Progress
 
-| Model             | Status      |     R² |
-| ----------------- | ----------- | ------: |
-| Linear Regression | ✅ Complete | **0.3470** |
-| Decision Tree     | ✅ Complete | **0.4221** |
-| Random Forest     | ✅ Complete | **0.4462** |
-| Gradient Boosting | ⏳ Planned  | — |
+| Model             | Status     |         R² |
+| ----------------- | ---------- | ---------: |
+| Linear Regression | ✅ Complete | **0.7719** |
+| Decision Tree     | ✅ Complete | **0.8045** |
+| Random Forest     | ✅ Complete | **0.8696** |
+| Gradient Boosting | ⏳ Planned  |          — |
 
 ---
 
@@ -84,9 +86,9 @@ This repository is updated throughout the internship to document my individual c
 | Notebook | Description | Status |
 |----------|-------------|--------|
 | 01_exploration.ipynb | Exploratory data analysis of California residential property sales | ✅ Complete |
-| 02_preprocessing.ipynb | Data cleaning and preprocessing | ✅ Complete |
+| 02_preprocessing.ipynb | Data cleaning, feature engineering, and preprocessing | ✅ Complete |
 | 03_baseline_model.ipynb | Linear regression baseline model | ✅ Complete |
-| 04_model_comparison.ipynb | Decision Tree and Random Forest models | ✅ Complete |
+| 04_model_comparison.ipynb | Decision Tree, Random Forest, and model performance comparison | ✅ Complete |
 | 05_advanced_models.ipynb | Try Gradient Boosting | ⏳ Planned |
 
 ---
@@ -95,6 +97,7 @@ This repository is updated throughout the internship to document my individual c
 
 * Python
 * pandas
+* GeoPandas
 * NumPy
 * scikit-learn
   - Linear Regression
@@ -146,6 +149,8 @@ Week 2 exploratory analysis found that:
 * Removed variables with more than 50% missing data.
 * Imputed remaining missing values using median and mode strategies.
 * Removed identifier variables and data leakage features.
+* Engineered additional predictive property features.
+* Added school district information using a spatial join with California school district boundaries.
 * One-hot encoded selected categorical variables.
 * Standardized continuous numerical features.
 * Created a chronological train/test split using the most recent month as the testing set and a configurable training window preceding the test month (initially set to 5 months).
@@ -160,6 +165,8 @@ Week 3 preprocessing included:
 - Removed variables containing more than 50% missing observations.
 - Imputed remaining missing values using median (numerical) and mode (categorical) strategies.
 - Removed identifier variables and project-designated data leakage features (`ListPrice` and `OriginalListPrice`).
+- Engineered four additional predictive property features.
+- Added school district information through a geographic spatial join.
 - One-hot encoded selected low-cardinality categorical variables.
 - Standardized continuous numerical predictor variables.
 - Created a chronological training/testing split using the most recent month as the testing dataset and a configurable training window (initially five months) immediately preceding it.
@@ -180,11 +187,11 @@ The baseline Linear Regression model establishes an initial benchmark for future
 
 Performance on the testing dataset:
 
-- R²: 0.3470
-- MAE: $433,447
-- RMSE: $1,356,053
-- MAPE: 38.07%
-- MdAPE: 26.51%
+- R²: 0.7719
+- MAE: $277,549
+- RMSE: $471,470
+- MAPE: 25.20%
+- MdAPE: 18.64%
 
 Although the baseline model captures a greater proportion of the variation in California home prices than earlier preprocessing iterations, there is still substantial room for improvement. More flexible machine learning algorithms are expected to better capture the nonlinear relationships present in residential real estate data.
 
@@ -208,8 +215,26 @@ Week 5 model comparison found that:
 - The Decision Tree model substantially improved prediction accuracy over the Linear Regression baseline.
 - The Random Forest model achieved the strongest overall performance across all evaluation metrics.
 - Prediction scatter plots showed the Random Forest produced predictions that most closely followed the ideal one-to-one relationship.
-- Feature importance analysis identified bathrooms, geographic location, living area, and year built as the most influential predictors of California home sale prices.
-- Random Forest achieved the highest R² (0.4462) while also producing the lowest MAE, RMSE, MAPE, and MdAPE among the models evaluated.
+- Feature importance analysis identified bathrooms, geographic location, living area, and property age as the most influential predictors of California home sale prices.
+- Random Forest achieved the highest R² (0.8696) while also producing the lowest MAE, RMSE, MAPE, and MdAPE among the models evaluated.
+
+### Week 6
+
+* Engineered four additional predictive property features.
+* Added school district information through a spatial join using California school district boundaries.
+* Retrained all machine learning models using the updated feature set.
+* Compared model performance before and after feature engineering.
+* Documented improvements in predictive accuracy across all models.
+
+## Week 6 Highlights
+
+Week 6 demonstrated that feature engineering substantially improved model performance.
+
+- PropertyAge replaced YearBuilt as a more meaningful representation of home age.
+- School district information provided more detailed geographic context than county alone.
+- All three machine learning models improved after incorporating the engineered features.
+- Linear Regression experienced the largest performance improvement.
+- Random Forest remained the strongest overall model, achieving an R² of **0.8696**, MAE of **$183,336**, and RMSE of **$356,476**.
 
 ---
 
