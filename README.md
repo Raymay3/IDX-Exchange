@@ -115,6 +115,7 @@ This model currently provides the most accurate predictions of California home s
 ## Technologies
 
 * Python
+* Visual Studio Code
 * pandas
 * GeoPandas
 * NumPy
@@ -124,7 +125,6 @@ This model currently provides the most accurate predictions of California home s
   - Random Forest Regressor
 * XGBoost
 * matplotlib
-* Jupyter Notebook
 
 Additional libraries may be added as the project progresses.
 
