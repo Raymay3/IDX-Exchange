@@ -1,6 +1,8 @@
 # IDX Exchange - California Home Price Prediction
 
-**Status:** 🚧 In Progress (Week 7 of 12)
+**Status:** 🚧 In Progress (Week 8 of 12)
+
+**Last Updated:** August 2026
 
 Machine learning project completed as part of my **Data Science Internship at IDX Exchange**.
 
@@ -10,7 +12,7 @@ The objective of this project is to develop a machine learning model capable of 
 
 The exploratory analysis currently includes approximately **794,000 California property transactions**, with **399,000 residential single-family homes** retained after applying the project filtering criteria.
 
-Throughout the internship, the project progresses from exploratory data analysis and preprocessing through feature engineering, model development, evaluation, and final presentation. The project includes engineered property features, school district information, and multiple machine learning models for predicting California home sale prices.
+Throughout the internship, the project progresses from exploratory data analysis and preprocessing through feature engineering, model development, evaluation, and final presentation. The project includes engineered property features, geographic school district information obtained through a spatial join, and multiple machine learning models ranging from Linear Regression to XGBoost for predicting California home sale prices.
 
 This repository is updated throughout the internship to document my individual contributions and project progress.
 
@@ -37,7 +39,23 @@ This repository is updated throughout the internship to document my individual c
 | Linear Regression | ✅ Complete | **0.7719** |
 | Decision Tree     | ✅ Complete | **0.8045** |
 | Random Forest     | ✅ Complete | **0.8696** |
-| Gradient Boosting | ⏳ Planned  |          — |
+| XGBoost | ✅ Complete | **0.8927** |
+
+---
+
+## Current Best Model
+
+The strongest model developed so far is **XGBoost Version C**.
+
+Performance on the testing dataset:
+
+- **R²:** 0.8927
+- **MAE:** $166,971
+- **RMSE:** $323,335
+- **MAPE:** 12.99%
+- **MdAPE:** 9.02%
+
+This model currently provides the most accurate predictions of California home sale prices among all models evaluated during the project.
 
 ---
 
@@ -71,6 +89,7 @@ This repository is updated throughout the internship to document my individual c
 │   ├── 02_preprocessing.ipynb
 │   ├── 03_baseline_model.ipynb
 │   ├── 04_model_comparison.ipynb
+│   ├── 05_advanced_models.ipynb
 ├── reports/
 │   └── metadata_notes.md         # Dataset field descriptions
 ├── .gitignore
@@ -89,7 +108,7 @@ This repository is updated throughout the internship to document my individual c
 | 02_preprocessing.ipynb | Data cleaning, feature engineering, and preprocessing | ✅ Complete |
 | 03_baseline_model.ipynb | Linear regression baseline model | ✅ Complete |
 | 04_model_comparison.ipynb | Decision Tree, Random Forest, and model performance comparison | ✅ Complete |
-| 05_advanced_models.ipynb | Try Gradient Boosting | ⏳ Planned |
+| 05_advanced_models.ipynb | XGBoost model development and hyperparameter tuning | ✅ Complete |
 
 ---
 
@@ -103,7 +122,7 @@ This repository is updated throughout the internship to document my individual c
   - Linear Regression
   - Decision Tree Regressor
   - Random Forest Regressor
-* XGBoost (planned)
+* XGBoost
 * matplotlib
 * Jupyter Notebook
 
@@ -236,6 +255,25 @@ Week 6 demonstrated that feature engineering substantially improved model perfor
 - Linear Regression experienced the largest performance improvement.
 - Random Forest remained the strongest overall model, achieving an R² of **0.8696**, MAE of **$183,336**, and RMSE of **$356,476**.
 
+### Week 7
+
+* Trained multiple XGBoost regression models.
+* Evaluated three model configurations using light hyperparameter tuning.
+* Compared model performance across all XGBoost versions.
+* Identified the highest-performing gradient boosting model.
+* Compared XGBoost against all previously developed machine learning models.
+* Visualized Actual vs. Predicted home sale prices for the best-performing model.
+
+## Week 7 Highlights
+
+Week 7 demonstrated that gradient boosting further improved predictive performance beyond the previously developed machine learning models.
+
+- Three XGBoost model configurations were evaluated using incremental hyperparameter tuning.
+- Increasing the number of boosting rounds substantially improved predictive accuracy.
+- Increasing the maximum tree depth produced the strongest overall model.
+- XGBoost Version C achieved the highest performance of every model evaluated during the project.
+- The final XGBoost model achieved an **R² of 0.8927**, **MAE of $166,971**, **RMSE of $323,335**, **MAPE of 12.99%**, and **MdAPE of 9.02%**.
+
 ---
 
 ## Dataset
@@ -252,10 +290,12 @@ The prediction target for this project is:
 
 * **ClosePrice**
 
-Following project guidance, the following variables will **not** be used as model features because they introduce target leakage:
+Following project guidance, variables that would introduce target leakage are excluded from model training. These include:
 
 * ListPrice
 * OriginalListPrice
+
+The project also uses a chronological train/test split so that each model predicts future sales using only information that would have been available at the time of prediction.
 
 ---
 
@@ -264,7 +304,8 @@ Following project guidance, the following variables will **not** be used as mode
 Future updates will include:
 
 * Additional feature engineering
-* Gradient Boosting regression models
+* Validation-based hyperparameter tuning
+* Additional experiments with categorical encoding strategies
 * Hyperparameter tuning and model optimization
 * Expanded model evaluation
 * Streamlit prediction application (optional)
