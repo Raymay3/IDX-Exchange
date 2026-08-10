@@ -1,6 +1,6 @@
 # IDX Exchange - California Home Price Prediction
 
-**Status:** 🚧 In Progress (Week 8 of 12)
+**Status:** 🚧 In Progress (Week 9 of 12)
 
 **Last Updated:** August 2026
 
@@ -10,7 +10,9 @@ Machine learning project completed as part of my **Data Science Internship at ID
 
 The objective of this project is to develop a machine learning model capable of predicting the final sale price of residential properties in California using historical Multiple Listing Service (MLS) transaction data.
 
-The exploratory analysis currently includes approximately **794,000 California property transactions**, with **399,000 residential single-family homes** retained after applying the project filtering criteria.
+The project uses monthly California CRMLS Sold transaction data. Initial exploratory analysis combined approximately **794,000 property transactions**, with approximately **399,000 residential single-family homes** retained during the initial filtering stage.
+
+As the preprocessing pipeline was expanded with additional monthly data and refined filtering rules, the modeling dataset grew to **411,984 valid California residential single-family property sales** before the final chronological train/validation/test split.
 
 Throughout the internship, the project progresses from exploratory data analysis and preprocessing through feature engineering, model development, evaluation, and final presentation. The project includes engineered property features, geographic school district information obtained through a spatial join, and multiple machine learning models ranging from Linear Regression to XGBoost for predicting California home sale prices.
 
@@ -23,39 +25,58 @@ This repository is updated throughout the internship to document my individual c
 * Explore historical California residential property data
 * Clean and preprocess MLS datasets
 * Engineer meaningful predictive features
+* Incorporate detailed geographic information through school district mapping
 * Train and compare multiple regression models
-* Evaluate model performance using appropriate regression metrics
+* Perform validation-based hyperparameter tuning
+* Evaluate model performance using multiple regression metrics and price segments
 * Produce accurate property price predictions
 * Document the complete machine learning workflow
-* Engineer meaningful predictive features
-* Incorporate geographic information through school district mapping
 
 ---
 
 ## Model Progress
 
-| Model             | Status     |         R² |
-| ----------------- | ---------- | ---------: |
-| Linear Regression | ✅ Complete | **0.7719** |
-| Decision Tree     | ✅ Complete | **0.8045** |
-| Random Forest     | ✅ Complete | **0.8696** |
-| XGBoost | ✅ Complete | **0.8927** |
+| Model | Status | R² |
+|---|---|---:|
+| Linear Regression | ✅ Complete | **0.7381** |
+| Decision Tree | ✅ Complete | **0.7949** |
+| Random Forest | ✅ Complete | **0.8815** |
+| XGBoost | ✅ Complete | **0.9024** |
 
 ---
 
 ## Current Best Model
 
-The strongest model developed so far is **XGBoost Version C**.
+The strongest model developed so far is the final tuned **XGBoost** model.
 
-Performance on the testing dataset:
+The selected configuration uses:
 
-- **R²:** 0.8927
-- **MAE:** $166,971
-- **RMSE:** $323,335
-- **MAPE:** 12.99%
-- **MdAPE:** 9.02%
+- **300 estimators**
+- **Maximum tree depth of 8**
+- **Learning rate of 0.1**
 
-This model currently provides the most accurate predictions of California home sale prices among all models evaluated during the project.
+Performance on the final testing dataset:
+
+- **R²:** 0.9024
+- **MAE:** $160,177.50
+- **RMSE:** $307,515.58
+- **MAPE:** 12.23%
+- **MdAPE:** 8.46%
+
+This configuration was selected using a dedicated validation period and then retrained using the combined training and validation data before final evaluation on the untouched testing period.
+
+XGBoost currently provides the strongest predictive performance among all models evaluated in the project.
+
+---
+
+## Final Model Comparison
+
+| Model | R² | MAE | RMSE | MAPE | MdAPE |
+|---|---:|---:|---:|---:|---:|
+| Linear Regression | 0.7381 | $303,048 | $503,602 | 27.47% | 20.57% |
+| Decision Tree | 0.7949 | $222,391 | $445,657 | 16.41% | 10.59% |
+| Random Forest | 0.8815 | $173,400 | $338,823 | 13.14% | 8.98% |
+| **XGBoost** | **0.9024** | **$160,178** | **$307,516** | **12.23%** | **8.46%** |
 
 ---
 
@@ -83,15 +104,17 @@ This model currently provides the most accurate predictions of California home s
 ```text
 .
 ├── data/
-│   └── README.md                 # Dataset information (raw MLS files excluded)
+│   └── README.md                  # Dataset information (raw MLS files excluded)
 ├── notebooks/
-│   ├── 01_exploration.ipynb      # Exploratory Data Analysis
-│   ├── 02_preprocessing.ipynb
-│   ├── 03_baseline_model.ipynb
-│   ├── 04_model_comparison.ipynb
-│   ├── 05_advanced_models.ipynb
+│   ├── 01_exploration.ipynb       # Exploratory Data Analysis
+│   ├── 02_preprocessing.ipynb     # Data cleaning and feature engineering
+│   ├── 03_baseline_model.ipynb    # Linear Regression baseline
+│   ├── 04_model_comparison.ipynb  # Decision Tree and Random Forest
+│   ├── 05_advanced_models.ipynb   # XGBoost and hyperparameter tuning
+│   └── 06_evaluation.ipynb        # Expanded model evaluation
 ├── reports/
-│   └── metadata_notes.md         # Dataset field descriptions
+│   ├── metadata_notes.md          # Dataset field descriptions
+│   └── metrics_summary.csv        # Final model performance metrics
 ├── .gitignore
 ├── LICENSE
 ├── README.md
@@ -103,12 +126,13 @@ This model currently provides the most accurate predictions of California home s
 ## Project Notebooks
 
 | Notebook | Description | Status |
-|----------|-------------|--------|
-| 01_exploration.ipynb | Exploratory data analysis of California residential property sales | ✅ Complete |
-| 02_preprocessing.ipynb | Data cleaning, feature engineering, and preprocessing | ✅ Complete |
-| 03_baseline_model.ipynb | Linear regression baseline model | ✅ Complete |
-| 04_model_comparison.ipynb | Decision Tree, Random Forest, and model performance comparison | ✅ Complete |
-| 05_advanced_models.ipynb | XGBoost model development and hyperparameter tuning | ✅ Complete |
+|---|---|---|
+| 01_exploration.ipynb | Exploratory analysis of California residential property sales | ✅ Complete |
+| 02_preprocessing.ipynb | Data cleaning, feature engineering, geographic enrichment, encoding, and preprocessing | ✅ Complete |
+| 03_baseline_model.ipynb | Linear Regression baseline model | ✅ Complete |
+| 04_model_comparison.ipynb | Decision Tree, Random Forest, feature comparison, and model evaluation | ✅ Complete |
+| 05_advanced_models.ipynb | XGBoost development and validation-based hyperparameter tuning | ✅ Complete |
+| 06_evaluation.ipynb | Expanded evaluation using MAPE, MdAPE, and home price bands | ✅ Complete |
 
 ---
 
@@ -164,36 +188,44 @@ Week 2 exploratory analysis found that:
 
 ### Week 3
 
-* Removed columns containing 100% missing values.
-* Removed variables with more than 50% missing data.
-* Imputed remaining missing values using median and mode strategies.
-* Removed identifier variables and data leakage features.
+* Combined monthly CRMLS Sold datasets and filtered to residential single-family properties.
+* Removed properties located outside California.
+* Removed columns containing 100% missing values and variables exceeding the missing-data threshold.
+* Removed identifier variables and known data leakage features.
+* Removed invalid sale-price observations.
 * Engineered additional predictive property features.
-* Added school district information using a spatial join with California school district boundaries.
-* One-hot encoded selected categorical variables.
-* Standardized continuous numerical features.
-* Created a chronological train/test split using the most recent month as the testing set and a configurable training window preceding the test month (initially set to 5 months).
-* Removed the top 0.5% of training sale prices after the chronological split to reduce the influence of extreme outliers while preserving an unbiased testing dataset.
-* Exported cleaned training and testing datasets for model development.
+* Added school district information using a spatial join with California School District Areas (2024–2025).
+* Resolved overlapping school district boundaries by retaining Unified districts where available and High School districts otherwise.
+* Created a chronological training, validation, and testing framework.
+* Used May 2026 as the validation period and June 2026 as the final testing period.
+* Applied sale-price outlier filtering independently to the training, validation, and testing periods using cutoffs learned from the training data.
+* Learned missing-value imputation values from the training data only.
+* Target encoded school district information using 5-fold out-of-fold encoding for the training set.
+* One-hot encoded remaining low-cardinality categorical variables.
+* Standardized continuous numerical features using parameters learned from the training data only.
+* Exported cleaned training, validation, and testing datasets for model development.
 
 ## Preprocessing Highlights
 
-Week 3 preprocessing included:
+The final preprocessing pipeline includes:
 
-- Removed columns with 100% missing values.
-- Removed variables containing more than 50% missing observations.
-- Imputed remaining missing values using median (numerical) and mode (categorical) strategies.
-- Removed identifier variables and project-designated data leakage features (`ListPrice` and `OriginalListPrice`).
-- Engineered four additional predictive property features.
-- Added school district information through a geographic spatial join.
-- One-hot encoded selected low-cardinality categorical variables.
-- Standardized continuous numerical predictor variables.
-- Created a chronological training/testing split using the most recent month as the testing dataset and a configurable training window (initially five months) immediately preceding it.
-- Removed the top 0.5% of training sale prices after the chronological split to reduce the impact of extreme outliers without modifying the testing dataset.
+- California-only residential single-family property filtering.
+- Removal of identifiers and project-designated leakage features (`ListPrice` and `OriginalListPrice`).
+- Four engineered property features:
+  - `PropertyAge`
+  - `BathroomBedroomRatio`
+  - `LivingAreaPerBedroom`
+  - `LotSizePerLivingArea`
+- Detailed geographic information from California school district boundaries.
+- Leakage-safe school district target encoding using 5-fold out-of-fold encoding.
+- One-hot encoding for remaining low-cardinality categorical variables.
+- Training-derived missing-value imputation and feature scaling.
+- A chronological **training / validation / testing** design.
+- **103 final predictor features**.
 
 ### Week 4
 
-* Loaded the cleaned training and testing datasets produced during preprocessing.
+* Loaded the cleaned training, validation, and testing datasets produced during preprocessing.
 * Trained a baseline Linear Regression model.
 * Generated predictions on the testing dataset.
 * Evaluated model performance using MAE, RMSE, R², MAPE, and MdAPE.
@@ -202,19 +234,17 @@ Week 3 preprocessing included:
 
 ## Baseline Model Results
 
-The baseline Linear Regression model establishes an initial benchmark for future model comparisons.
+The final Linear Regression baseline establishes the benchmark for comparison with more flexible machine learning models.
 
-Performance on the testing dataset:
+Performance on the final testing dataset:
 
-- R²: 0.7719
-- MAE: $277,549
-- RMSE: $471,470
-- MAPE: 25.20%
-- MdAPE: 18.64%
+- **R²:** 0.7381
+- **MAE:** $303,048.15
+- **RMSE:** $503,601.63
+- **MAPE:** 27.47%
+- **MdAPE:** 20.57%
 
-Although the baseline model captures a greater proportion of the variation in California home prices than earlier preprocessing iterations, there is still substantial room for improvement. More flexible machine learning algorithms are expected to better capture the nonlinear relationships present in residential real estate data.
-
-These results serve as the baseline against which all future models in this project will be evaluated.
+The baseline captures a substantial portion of the variation in California home sale prices but produces considerably larger dollar- and percentage-based errors than the tree-based and gradient boosting models developed later in the project.
 
 ### Week 5
 
@@ -231,48 +261,78 @@ These results serve as the baseline against which all future models in this proj
 
 Week 5 model comparison found that:
 
-- The Decision Tree model substantially improved prediction accuracy over the Linear Regression baseline.
-- The Random Forest model achieved the strongest overall performance across all evaluation metrics.
-- Prediction scatter plots showed the Random Forest produced predictions that most closely followed the ideal one-to-one relationship.
-- Feature importance analysis identified bathrooms, geographic location, living area, and property age as the most influential predictors of California home sale prices.
-- Random Forest achieved the highest R² (0.8696) while also producing the lowest MAE, RMSE, MAPE, and MdAPE among the models evaluated.
+- Decision Tree substantially improved prediction accuracy over the Linear Regression baseline.
+- Random Forest substantially improved performance beyond both Linear Regression and the individual Decision Tree.
+- Final Decision Tree testing performance reached an **R² of 0.7949**, **MAE of $222,391**, and **RMSE of $445,657**.
+- Final Random Forest testing performance reached an **R² of 0.8815**, **MAE of $173,400**, and **RMSE of $338,823**.
+- Random Forest also achieved a **MAPE of 13.14%** and **MdAPE of 8.98%**.
+- Feature importance identified the target-encoded school district feature (`DistrictName_TE`) and `LivingArea` as the two most influential predictors in the final Random Forest model.
+- Geographic coordinates and engineered property characteristics also contributed to the model's predictions.
 
 ### Week 6
 
 * Engineered four additional predictive property features.
-* Added school district information through a spatial join using California school district boundaries.
-* Retrained all machine learning models using the updated feature set.
-* Compared model performance before and after feature engineering.
-* Documented improvements in predictive accuracy across all models.
+* Added detailed school district information through a spatial join with California school district boundaries.
+* Replaced high-dimensional school district one-hot encoding with target encoding in the current preprocessing pipeline.
+* Reduced the final feature space to 103 predictor variables.
+* Retrained Linear Regression, Decision Tree, and Random Forest using the updated feature-engineered dataset.
+* Compared original and updated feature sets and model performance.
 
 ## Week 6 Highlights
 
-Week 6 demonstrated that feature engineering substantially improved model performance.
+Week 6 demonstrated the value of adding engineered property characteristics and more detailed geographic information.
 
-- PropertyAge replaced YearBuilt as a more meaningful representation of home age.
-- School district information provided more detailed geographic context than county alone.
-- All three machine learning models improved after incorporating the engineered features.
-- Linear Regression experienced the largest performance improvement.
-- Random Forest remained the strongest overall model, achieving an R² of **0.8696**, MAE of **$183,336**, and RMSE of **$356,476**.
+- `PropertyAge` provides a direct representation of home age at the time of sale.
+- Ratio features capture relationships among bedrooms, bathrooms, living area, and lot size.
+- School district information provides more detailed geographic context than county-level location alone.
+- Target encoding allows detailed school district information to be retained without creating hundreds of district dummy variables.
+- The current Random Forest model achieves an **R² of 0.8815**, **MAE of $173,400**, **RMSE of $338,823**, **MAPE of 13.14%**, and **MdAPE of 8.98%**.
+- `DistrictName_TE` is the most important feature in the final Random Forest model.
 
 ### Week 7
 
-* Trained multiple XGBoost regression models.
-* Evaluated three model configurations using light hyperparameter tuning.
-* Compared model performance across all XGBoost versions.
-* Identified the highest-performing gradient boosting model.
-* Compared XGBoost against all previously developed machine learning models.
-* Visualized Actual vs. Predicted home sale prices for the best-performing model.
+* Trained four XGBoost regression configurations.
+* Performed light hyperparameter tuning of `n_estimators`, `max_depth`, and `learning_rate`.
+* Evaluated candidate configurations using the dedicated validation dataset.
+* Selected the strongest configuration without using the final testing period for model-selection decisions.
+* Retrained the selected configuration using the combined training and validation datasets.
+* Evaluated the final XGBoost model on the untouched testing period.
+* Compared XGBoost against Linear Regression, Decision Tree, and Random Forest.
 
 ## Week 7 Highlights
 
-Week 7 demonstrated that gradient boosting further improved predictive performance beyond the previously developed machine learning models.
+Week 7 demonstrated that gradient boosting further improved predictive performance.
 
-- Three XGBoost model configurations were evaluated using incremental hyperparameter tuning.
-- Increasing the number of boosting rounds substantially improved predictive accuracy.
-- Increasing the maximum tree depth produced the strongest overall model.
-- XGBoost Version C achieved the highest performance of every model evaluated during the project.
-- The final XGBoost model achieved an **R² of 0.8927**, **MAE of $166,971**, **RMSE of $323,335**, **MAPE of 12.99%**, and **MdAPE of 9.02%**.
+- Four XGBoost configurations were evaluated using validation-based hyperparameter tuning.
+- Increasing `n_estimators` from 100 to 200 improved validation performance.
+- Increasing `max_depth` from 6 to 8 produced an additional improvement.
+- Reducing `learning_rate` from 0.3 to 0.1 while increasing `n_estimators` to 300 produced the strongest validation results.
+- The selected configuration uses **300 estimators**, **maximum depth 8**, and **learning rate 0.1**.
+- After retraining on the combined training and validation data, the final XGBoost model achieved an **R² of 0.9024**, **MAE of $160,177.50**, **RMSE of $307,515.58**, **MAPE of 12.23%**, and **MdAPE of 8.46%**.
+- XGBoost achieved the strongest final testing performance across all five evaluation metrics.
+
+### Week 8
+
+* Expanded model evaluation beyond R² using MAE, RMSE, MAPE, and MdAPE.
+* Consolidated final performance metrics for all four models.
+* Exported the model comparison to `metrics_summary.csv`.
+* Divided the final testing properties into five actual-sale-price quintiles.
+* Evaluated XGBoost performance separately across each price band.
+* Compared dollar-based and percentage-based errors across market segments.
+* Examined systematic overprediction and underprediction by price range.
+* Identified the housing-market segments where the final model performs best and where prediction errors are largest.
+
+## Week 8 Highlights
+
+Expanded evaluation showed that model accuracy varies across different portions of the California housing market.
+
+- XGBoost remains the strongest overall model with an **R² of 0.9024**, **MAPE of 12.23%**, and **MdAPE of 8.46%**.
+- The **Lower-Middle Price** band (approximately **$576,000–$800,000**) achieved the strongest relative accuracy, with a **MAPE of 9.77%** and **MdAPE of 6.68%**.
+- The **Lowest Price** band (**$190,000–$575,000**) produced the smallest dollar errors, with an **MAE of $58,109** and **RMSE of $94,968**.
+- Dollar prediction errors increased substantially as home prices increased.
+- The **Highest Price** band (approximately **$1.65 million and above**) produced the largest dollar errors, with an **MAE of $412,677** and **RMSE of $610,061**.
+- The model tended to underpredict the highest-priced homes by approximately **$193,703 on average**.
+- These results demonstrate why AVM performance should be evaluated across multiple metrics and market segments rather than relying on R² alone.
 
 ---
 
@@ -295,21 +355,25 @@ Following project guidance, variables that would introduce target leakage are ex
 * ListPrice
 * OriginalListPrice
 
-The project also uses a chronological train/test split so that each model predicts future sales using only information that would have been available at the time of prediction.
+The project uses a chronological **training / validation / testing** framework so that model development reflects a realistic future-prediction setting.
+
+- The training period is used to fit candidate models.
+- May 2026 is reserved as the validation period for model development and hyperparameter selection.
+- June 2026 is reserved as the final testing period.
+- Hyperparameter decisions are made without using the final testing dataset.
+- After model selection, the selected configuration is retrained using the combined training and validation data before final testing.
 
 ---
 
 ## Future Work
 
-Future updates will include:
+Future project stages will include:
 
-* Additional feature engineering
-* Validation-based hyperparameter tuning
-* Additional experiments with categorical encoding strategies
-* Hyperparameter tuning and model optimization
-* Expanded model evaluation
-* Streamlit prediction application (optional)
-* Final project documentation and presentation
+* Optional Streamlit prediction application
+* Final project documentation
+* Presentation preparation
+* Final model interpretation and project conclusions
+* Repository cleanup and handoff
 
 ---
 
