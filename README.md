@@ -1,6 +1,6 @@
 # IDX Exchange - California Home Price Prediction
 
-**Status:** 🚧 In Progress (Week 9 of 12)
+**Status:** 🚧 In Progress (Week 10 of 12)
 
 **Last Updated:** August 2026
 
@@ -117,8 +117,11 @@ XGBoost currently provides the strongest predictive performance among all models
 │   └── metrics_summary.csv        # Final model performance metrics
 ├── .gitignore
 ├── LICENSE
-├── README.md
-└── requirements.txt
+├── app.py                       # Streamlit home price prediction app
+├── model.pkl                    # Trained XGBoost model
+├── preprocessing.pkl            # Saved preprocessing pipeline
+├── requirements.txt
+└── README.md
 ```
 
 ---
@@ -334,6 +337,24 @@ Expanded evaluation showed that model accuracy varies across different portions 
 - The model tended to underpredict the highest-priced homes by approximately **$193,703 on average**.
 - These results demonstrate why AVM performance should be evaluated across multiple metrics and market segments rather than relying on R² alone.
 
+### Week 9
+
+* Developed an interactive Streamlit application for predicting California home sale prices.
+* Loaded the final tuned XGBoost model using joblib.
+* Loaded the saved preprocessing pipeline to ensure predictions use the same feature engineering, encoding, and scaling applied during training.
+* Designed a user-friendly interface for entering key property characteristics.
+* Generated real-time home price estimates based on user inputs.
+* Added project documentation, model information, and prediction disclaimers within the application.
+
+## Week 9 Highlights
+
+Week 9 focused on deploying the final machine learning model as an interactive application.
+
+- The Streamlit app enables users to estimate California home sale prices using the trained XGBoost model.
+- Predictions use the same preprocessing pipeline developed during model training, including feature engineering, target encoding, one-hot encoding, and feature scaling.
+- The application demonstrates an end-to-end machine learning workflow from raw user input to model prediction.
+- The interface was designed to provide a simple demonstration of the project's predictive capabilities while documenting assumptions for features not collected from users.
+
 ---
 
 ## Dataset
@@ -369,11 +390,29 @@ The project uses a chronological **training / validation / testing** framework s
 
 Future project stages will include:
 
-* Optional Streamlit prediction application
 * Final project documentation
 * Presentation preparation
 * Final model interpretation and project conclusions
 * Repository cleanup and handoff
+
+---
+
+## Streamlit Prediction App
+
+The repository includes an interactive Streamlit application (`app.py`) that allows users to estimate California home sale prices using the final tuned XGBoost model.
+
+The application:
+
+- Loads the trained XGBoost model (`model.pkl`)
+- Loads the saved preprocessing pipeline (`preprocessing.pkl`)
+- Accepts user-provided property characteristics
+- Applies the same preprocessing workflow used during model training
+- Returns an estimated California home sale price in real time
+
+Run the application locally with:
+
+```bash
+streamlit run app.py
 
 ---
 
