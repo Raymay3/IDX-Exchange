@@ -413,6 +413,7 @@ Run the application locally with:
 
 ```bash
 streamlit run app.py
+```
 
 ---
 
