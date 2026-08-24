@@ -1,6 +1,6 @@
 # IDX Exchange - California Home Price Prediction
 
-**Status:** 🚧 In Progress (Week 10 of 12)
+**Status:** 🚧 In Progress (Week 11 of 12)
 
 **Last Updated:** August 2026
 
@@ -17,6 +17,31 @@ As the preprocessing pipeline was expanded with additional monthly data and refi
 Throughout the internship, the project progresses from exploratory data analysis and preprocessing through feature engineering, model development, evaluation, and final presentation. The project includes engineered property features, geographic school district information obtained through a spatial join, and multiple machine learning models ranging from Linear Regression to XGBoost for predicting California home sale prices.
 
 This repository is updated throughout the internship to document my individual contributions and project progress.
+
+---
+
+## Dataset
+
+This project uses historical California residential property sales data from the
+California Regional Multiple Listing Service (CRMLS).
+
+The raw data consists of monthly `CRMLSSold` files containing property transaction
+records and characteristics such as sale price, living area, bedrooms, bathrooms,
+lot size, geographic coordinates, and other MLS property attributes.
+
+The analysis is restricted to:
+
+- `PropertyType = Residential`
+- `PropertySubType = SingleFamilyResidence`
+- Properties located in California
+
+The complete dataset contains approximately 794,000 property transactions before
+filtering. After the primary residential and geographic filtering steps, 411,984
+valid California residential single-family sales remained before the final
+chronological train/validation/test split.
+
+Because the MLS data is proprietary, the raw and processed datasets are not included
+in this public repository.
 
 ---
 
@@ -47,7 +72,7 @@ This repository is updated throughout the internship to document my individual c
 
 ## Current Best Model
 
-The strongest model developed so far is the final tuned **XGBoost** model.
+The strongest model developed in this project is the final tuned **XGBoost** model.
 
 The selected configuration uses:
 
@@ -65,7 +90,7 @@ Performance on the final testing dataset:
 
 This configuration was selected using a dedicated validation period and then retrained using the combined training and validation data before final evaluation on the untouched testing period.
 
-XGBoost currently provides the strongest predictive performance among all models evaluated in the project.
+XGBoost provided the strongest predictive performance among all models evaluated in the project.
 
 ---
 
@@ -143,6 +168,7 @@ XGBoost currently provides the strongest predictive performance among all models
 
 * Python
 * Visual Studio Code
+* Jupyter Notebook
 * pandas
 * GeoPandas
 * NumPy
@@ -152,8 +178,107 @@ XGBoost currently provides the strongest predictive performance among all models
   - Random Forest Regressor
 * XGBoost
 * matplotlib
+* Streamlit
+* joblib
+* Git / GitHub
 
-Additional libraries may be added as the project progresses.
+---
+
+## Installation and Setup
+
+### 1. Clone the Repository
+
+Clone this repository to your local machine:
+
+```bash
+git clone https://github.com/Raymay3/IDX-Exchange.git
+cd IDX-Exchange
+```
+
+### 2. Create a Virtual Environment
+
+Create a Python virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+Activate the environment:
+
+**Windows**
+
+```bash
+.venv\Scripts\activate
+```
+
+**macOS/Linux**
+
+```bash
+source .venv/bin/activate
+```
+
+### 3. Install Dependencies
+
+Install the required Python packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Add the Dataset
+
+The CRMLS MLS datasets used for this project are proprietary and are not included in this repository.
+
+Authorized users should place the monthly `CRMLSSold` CSV files in:
+
+```text
+data/California/
+```
+
+The exploration and preprocessing workflows expect the monthly CSV files to be located in this directory.
+
+---
+
+## Reproducing the Analysis
+
+Run the project notebooks in numerical order:
+
+1. `01_exploration.ipynb` – Perform exploratory data analysis on the raw CRMLS data.
+2. `02_preprocessing.ipynb` – Clean the data, engineer features, add school district information, encode variables, scale features, and create the final training, validation, and testing datasets.
+3. `03_baseline_model.ipynb` – Train and evaluate the Linear Regression baseline.
+4. `04_model_comparison.ipynb` – Train and compare Decision Tree and Random Forest models.
+5. `05_advanced_models.ipynb` – Train and tune the XGBoost model.
+6. `06_evaluation.ipynb` – Perform the final model comparison and expanded evaluation across home price bands.
+
+Running the notebooks in this order recreates the complete machine learning workflow from raw MLS data through final model evaluation.
+
+---
+
+## Streamlit Prediction App
+
+The project includes an interactive Streamlit application that uses the final tuned XGBoost model to generate estimated California home sale prices.
+
+Users enter property characteristics through the application interface, and the app recreates the required engineered features and preprocessing steps before generating a predicted sale price.
+
+The application uses the saved `model.pkl` and `preprocessing.pkl` files produced during model development.
+
+### Launch the App
+
+From the repository root, run:
+
+```bash
+streamlit run app.py
+```
+
+Streamlit will start a local server and open the application in your web browser.
+
+The following files must be present in the repository root:
+
+```text
+app.py
+model.pkl
+preprocessing.pkl
+```
 
 ---
 
@@ -208,7 +333,7 @@ Week 2 exploratory analysis found that:
 * Standardized continuous numerical features using parameters learned from the training data only.
 * Exported cleaned training, validation, and testing datasets for model development.
 
-## Preprocessing Highlights
+## Data Preprocessing
 
 The final preprocessing pipeline includes:
 
@@ -357,14 +482,6 @@ Week 9 focused on deploying the final machine learning model as an interactive a
 
 ---
 
-## Dataset
-
-The underlying California MLS property datasets are proprietary and are **not included** in this public repository.
-
-This repository contains only my source code, notebooks, documentation, and supporting materials.
-
----
-
 ## Modeling Notes
 
 The prediction target for this project is:
@@ -394,26 +511,6 @@ Future project stages will include:
 * Presentation preparation
 * Final model interpretation and project conclusions
 * Repository cleanup and handoff
-
----
-
-## Streamlit Prediction App
-
-The repository includes an interactive Streamlit application (`app.py`) that allows users to estimate California home sale prices using the final tuned XGBoost model.
-
-The application:
-
-- Loads the trained XGBoost model (`model.pkl`)
-- Loads the saved preprocessing pipeline (`preprocessing.pkl`)
-- Accepts user-provided property characteristics
-- Applies the same preprocessing workflow used during model training
-- Returns an estimated California home sale price in real time
-
-Run the application locally with:
-
-```bash
-streamlit run app.py
-```
 
 ---
 
