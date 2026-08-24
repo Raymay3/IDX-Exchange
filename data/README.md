@@ -1,19 +1,43 @@
 # Data
 
-The California CRMLS Sold datasets used in this project are proprietary and are
-not included in this public repository.
+The California Regional Multiple Listing Service (CRMLS) Sold datasets used in this project are proprietary and are **not included in this public repository**.
 
-This directory is reserved for the monthly CSV files used during development.
+The raw data consists of monthly `CRMLSSold` CSV files containing historical California property transaction records and property characteristics.
 
-Example structure:
+## Expected Data Structure
+
+To reproduce the analysis, authorized users should place the monthly CRMLS Sold CSV files inside the `data/California/` directory:
 
 ```text
 data/
+├── README.md
 └── California/
-    ├── CRMLSSold202401_filled.csv
-    ├── CRMLSSold202402_filled.csv
-    └── ...
+    ├── CRMLSSold202201.csv
+    ├── CRMLSSold202202.csv
+    ├── ...
+    └── CRMLSSold202606.csv
 ```
 
-To reproduce the analysis, authorized users should place the CRMLS datasets in
-this directory while preserving the expected folder structure.
+The exploration and preprocessing notebooks automatically locate and combine the CSV files stored in `data/California/`.
+
+## Generated Data Files
+
+Running the preprocessing notebook creates the cleaned datasets used by the modeling notebooks:
+
+```text
+data/
+├── train_cleaned.csv
+├── validation_cleaned.csv
+└── test_cleaned.csv
+```
+
+These generated datasets are also excluded from the public repository because they are derived from the proprietary CRMLS data.
+
+## Reproducing the Project
+
+Authorized users should:
+
+1. Place the monthly CRMLS Sold CSV files in `data/California/`.
+2. Run `01_exploration.ipynb` for exploratory data analysis.
+3. Run `02_preprocessing.ipynb` to generate the cleaned training, validation, and testing datasets.
+4. Continue with the remaining modeling notebooks in numerical order.
