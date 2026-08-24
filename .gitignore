@@ -217,8 +217,6 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
----
-
 # -------------------------
 # IDX Exchange datasets
 # -------------------------
@@ -231,12 +229,16 @@ __marimo__/
 *.feather
 
 # Local data directories
-data/
+data/*
 !data/README.md
 
 # Trained models
 *.pkl
 *.joblib
+
+# Keep the trained model and preprocessing artifacts required by the Streamlit app
+!model.pkl
+!preprocessing.pkl
 
 # VS Code
 .vscode/
