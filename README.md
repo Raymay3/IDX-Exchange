@@ -1,10 +1,10 @@
 # IDX Exchange - California Home Price Prediction
 
-**Status:** 🚧 In Progress (Week 11 of 12)
+**Status:** 🚧 In Progress (Week 12 of 12)
 
 **Last Updated:** August 2026
 
-Machine learning project completed as part of my **Data Science Internship at IDX Exchange**.
+Machine learning project developed as part of my **Data Science Internship at IDX Exchange**.
 
 ## Overview
 
@@ -478,7 +478,49 @@ Week 9 focused on deploying the final machine learning model as an interactive a
 - The Streamlit app enables users to estimate California home sale prices using the trained XGBoost model.
 - Predictions use the same preprocessing pipeline developed during model training, including feature engineering, target encoding, one-hot encoding, and feature scaling.
 - The application demonstrates an end-to-end machine learning workflow from raw user input to model prediction.
-- The interface was designed to provide a simple demonstration of the project's predictive capabilities while documenting assumptions for features not collected from users.
+- The interface was designed to provide a simple demonstration of the project's predictive capabilities while documenting assumptions for features not collected from users.\
+
+### Week 10
+
+* Completed final project documentation and repository organization.
+* Expanded the README to document the complete end-to-end machine learning workflow.
+* Added installation and environment setup instructions.
+* Added instructions for reproducing the analysis.
+* Documented the final preprocessing pipeline, feature engineering, model development, and evaluation results.
+* Added Streamlit application setup and launch instructions.
+* Reviewed repository files for clarity and reproducibility.
+* Finalized project limitations and documentation for repository handoff.
+
+## Week 10 Highlights
+
+Week 10 focused on making the project reproducible, understandable, and ready for final delivery.
+
+- The README now documents the complete workflow from raw CRMLS data through preprocessing, modeling, evaluation, and deployment.
+- Installation and reproduction instructions allow the project structure and analysis sequence to be understood by other users.
+- Final model results and the Streamlit application are documented alongside the supporting preprocessing pipeline.
+- Repository organization and documentation were reviewed in preparation for the final presentation and project handoff.
+
+### Week 11
+
+* Prepared the final stakeholder presentation with the project team.
+* Developed the evaluation section of the shared presentation slide deck.
+* Summarized final model performance using R², MAPE, and MdAPE.
+* Prepared visual explanations of model performance across housing-market segments.
+* Reviewed model accuracy across price ranges, geographic areas, and property characteristics.
+* Prepared presentation material explaining prediction-error magnitude and direction.
+* Summarized key model findings, limitations, and considerations for interpreting predictions.
+* Coordinated presentation content with team members to maintain a consistent project narrative.
+* Prepared for the final presentation rehearsal and Streamlit demonstration.
+
+## Week 11 Highlights
+
+Week 11 focused on translating the project's technical results into a clear stakeholder presentation.
+
+- The presentation summarizes the complete project workflow, including data exploration, preprocessing, feature engineering, modeling, evaluation, and deployment.
+- The evaluation section emphasizes that overall model metrics should be interpreted alongside performance across different housing-market segments.
+- Presentation visuals examine how prediction accuracy can vary by home price, geography, and property characteristics.
+- Model limitations and areas of higher prediction uncertainty are communicated alongside the overall results.
+- The team prepared a shared slide deck and coordinated individual presentation sections in preparation for the final stakeholder presentation.
 
 ---
 
@@ -503,14 +545,15 @@ The project uses a chronological **training / validation / testing** framework s
 
 ---
 
-## Future Work
+## Remaining Work
 
-Future project stages will include:
+The project is approaching completion. Remaining tasks include:
 
-* Final project documentation
-* Presentation preparation
-* Final model interpretation and project conclusions
-* Repository cleanup and handoff
+* Complete the final presentation rehearsal
+* Deliver the final stakeholder presentation
+* Demonstrate the Streamlit prediction application
+* Complete final repository review and cleanup
+* Submit the final project repository
 
 ---
 
