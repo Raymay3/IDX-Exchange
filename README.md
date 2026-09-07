@@ -1,8 +1,8 @@
 # IDX Exchange - California Home Price Prediction
 
-**Status:** 🚧 In Progress (Week 12 of 12)
+**Status:** ✅ Complete
 
-**Last Updated:** August 2026
+**Completed:** September 2026
 
 Machine learning project developed as part of my **Data Science Internship at IDX Exchange**.
 
@@ -522,6 +522,27 @@ Week 11 focused on translating the project's technical results into a clear stak
 - Model limitations and areas of higher prediction uncertainty are communicated alongside the overall results.
 - The team prepared a shared slide deck and coordinated individual presentation sections in preparation for the final stakeholder presentation.
 
+### Week 12
+
+* Delivered the final team presentation to IDX Exchange stakeholders via Zoom.
+* Presented the completed end-to-end California home price prediction workflow.
+* Presented final model evaluation results and key findings from the project.
+* Demonstrated the Streamlit home price prediction application.
+* Completed the final review and cleanup of the project repository.
+* Finalized project code, documentation, model artifacts, and application files for handoff.
+* Submitted the completed repository and final presentation materials.
+
+## Week 12 Highlights
+
+Week 12 completed the California Home Price Prediction project and focused on final presentation and project handoff.
+
+- The team delivered the final stakeholder presentation covering data exploration, preprocessing, feature engineering, model development, evaluation, and deployment.
+- Final results demonstrated that the tuned XGBoost model achieved the strongest overall performance, with an **R² of 0.9024**, **MAPE of 12.23%**, and **MdAPE of 8.46%**.
+- The Streamlit application provided a live demonstration of the end-to-end prediction workflow using the final trained model and saved preprocessing pipeline.
+- The final repository includes the complete analysis workflow, project documentation, evaluation results, trained model artifacts, and prediction application.
+- Repository documentation and project files were reviewed and finalized to support reproducibility and project handoff.
+- The completed project represents an end-to-end machine learning workflow from raw MLS transaction data through preprocessing, modeling, evaluation, and interactive prediction.
+
 ---
 
 ## Modeling Notes
@@ -545,15 +566,15 @@ The project uses a chronological **training / validation / testing** framework s
 
 ---
 
-## Remaining Work
+## Project Completion
 
-The project is approaching completion. Remaining tasks include:
+The California Home Price Prediction project was completed as part of the 12-week IDX Exchange Data Science Internship.
 
-* Complete the final presentation rehearsal
-* Deliver the final stakeholder presentation
-* Demonstrate the Streamlit prediction application
-* Complete final repository review and cleanup
-* Submit the final project repository
+The final project delivers an end-to-end machine learning workflow for estimating California residential home sale prices, including data exploration, leakage-safe preprocessing, feature engineering, geographic enrichment, model comparison, hyperparameter tuning, expanded model evaluation, and an interactive Streamlit prediction application.
+
+Among the models evaluated, the final tuned XGBoost model achieved the strongest testing performance with an **R² of 0.9024**, **MAPE of 12.23%**, and **MdAPE of 8.46%**.
+
+The completed repository serves as the final technical documentation and project handoff for the internship.
 
 ---
 
